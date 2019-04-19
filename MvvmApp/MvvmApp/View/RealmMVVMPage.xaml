@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MvvmApp"
+             x:Class="MvvmApp.RealmMVVMPage">
+    <ContentPage.BindingContext>
+        <local:ContactsViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="ContactsListView"
+                      ItemsSource="{Binding Users}" 
+                      ItemSelected="OnItemSelected"
+                      RowHeight="100">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame BackgroundColor="White"
+                                   Margin="4"
+                                   CornerRadius="8">
+                            <Grid>
+                                <Label Text="{Binding Name, StringFormat='Имя : {0}'}"
+                                           Grid.Row="0"/>
+                                <Label Text="{Binding Surname, StringFormat='Фамилия : {0}'}"
+                                           Grid.Row="1"/>
+                                <Label Text="{Binding Age, StringFormat='Возраст : {0}'}"
+                                           Grid.Row="2"/>
+                            </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

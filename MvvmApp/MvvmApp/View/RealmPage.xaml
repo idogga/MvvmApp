@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MvvmApp"
+             x:Class="MvvmApp.RealmPage">
+    <ContentPage.BindingContext>
+        <local:RealmListVM x:Name="realmVM"/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="AUTO"/>
+            </Grid.RowDefinitions>
+            <ListView ItemsSource="{Binding PhoneBook}" 
+                      CachingStrategy="RecycleElementAndDataTemplate"
+                      SelectionMode="None"
+                      HasUnevenRows="False"
+                      RowHeight="100"
+                      Grid.Row="0"
+                      BackgroundColor="White">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            
+                                <StackLayout Margin="8">
+                                    <Label Text="{Binding Name, StringFormat='Имя : {0}'}"/>
+                                    <Label Text="{Binding Surname, StringFormat='Фамилия : {0}'}"/>
+                                    <Label Text="{Binding Age, StringFormat='Возраст : {0}'}"/>
+                                </StackLayout>
+                            
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Добавить" 
+                    Clicked="OnAddClicked"
+                    Grid.Row="1"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
